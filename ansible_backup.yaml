@@ -1,0 +1,54 @@
+# 备份服务器------scm业务机
+# 需求: 每天将scm的code压缩备份到备份服务器,保留7天的压缩. 每天晚上12:00执行,执行完毕发邮件.
+# 注意点: 1,压缩包日期
+#         2,远端code先cp到临时目录,压缩后,将压缩包取回本地.避免将远端code干掉
+- hosts:
+  remote_user: root
+  vars:
+  - sfpath: "/backup/scm-data/*_$(date +%F -d '-1 day')_scmdata.tar.gz"
+  - dfpath: "/data/backup/scm-data/"
+  tasks:
+    #清理远端的压缩包,远端进保留一天scm-data.tar.gz  2,远端打包并将压缩包取回
+    - name: Clean | keeping [scm-node]'s /backup/scm-data dir only have one tar pkg
+      shell: find /backup/scm-data/ -name "*.tar.gz"  -type f -mtime -7 |xargs rm -f
+
+    - name: Package | make /root/.scm to tar.gz package on scm-node
+      raw:
+           cd /backup/scm-data && \
+           \rm -rf .scm && \
+           cp -r /root/.scm /backup/scm-data/ && \ #192.168.x.x_2017-09-03_scmdata.tar.gz
+           tar zcf /backup/scm-data/`ifconfig|sed -n '2p'|awk -F':' '{print $2}'|awk '{print $1}'`_$(date +%F -d '-1 day')_scmdata.tar.gz .scm
+
+    - name: Download | copy scm-node's tar.gz to ansible vm([this vm] /data/backup/scm-data)
+      synchronize:
+        src: "{{ sfpath }}"
+        dest: "{{ dfpath }}"
+        mode: pull
+
+    # 远程解压
+    # - name "this vm restore scm data to test data on app"
+    #   unarchive:
+    #     src: "{{ dfpath }}"
+    #     dest: /root
+    #     remote_src: True
+
+
+- hosts: backup-node
+  remote_user: root
+  tasks: #清理本地scm压缩包,仅保存7天的压缩包. 完事后,发邮件.
+    - name: Keeps scm-data.tar.gz of 7 days in local
+      shell: find /data/backup/scm-data/ -name "*.tar.gz"  -type f -mtime +7|xargs rm -f
+
+    - name: sendMail to op
+      mail:
+        host: smtp.sina.com
+        port: 25
+        username: lanny@sina.com
+        password: 123456
+        from: lanny@sina.com (lanny)
+        to: maotai <maotai@maotai.org>
+        # cc: John Doe <j.d@example.org>, Suzie Something <sue@example.com>
+        # cc: xx <xx.maotai.com>, xx <xxx@maotai.com>
+        # attach: /etc/fstab /etc/hosts
+        subject: Backup-scm successfully
+        body: 'System {{ ansible_hostname }}-192.168.x.x from scm-node scm-backup has been successfully provisioned.'
