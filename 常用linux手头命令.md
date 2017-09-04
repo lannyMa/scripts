@@ -426,82 +426,7 @@ http://www.361way.com/sed-process-lines/2263.html
  
 
  
-优化小结:
-一清： 定时清理日志/var/spool/clientsqueue
-一精： 精简开机启动服务
-一增： 增大文件描述符
-两优： linux内核参数的优化、yum源优化
-四设：设置系统的字符集、设置ssh登录限制、设置开机的提示信息与内核信息、设置block的大小
-七其他：文件系统优化、sync数据同步写入磁盘、不更新时间戳、锁定系统关键文件、时间同步、sudo集权管理、关闭防火墙和selinux
- 
- 
-centos一键优化脚本:
-- [细节:](http://oldboy.blog.51cto.com/2561410/1336488) 
-- ![](http://oldboy.blog.51cto.com/2561410/1184228)
-- ![](http://oldboy.blog.51cto.com/2561410/1216730)
-- 一键脚本:
-  - [较简单: ](http://mofansheng.blog.51cto.com/8792265/1710247)
-  - [较健全:](http://chocolee.blog.51cto.com/8158455/1424587) 
- 
-[本文 centos 6.5 优化 的项有18处:](http://www.lvtao.net/server/centos-server-setup.html)
-- 1、centos6.5最小化安装后启动网卡
-- 2、ifconfig查询IP进行SSH链接
-- 3、更新系统源并且升级系统
-- 4、系统时间更新和设定定时任
-- 5、修改ip地址、网关、主机名、DNS
-- 6、关闭selinux，清空iptables
-- 7、创建普通用户并进行sudo授权管理
-- 8、修改SSH端口号和屏蔽root账号远程登陆
-- 9、锁定关键文件系统（禁止非授权用户获得权限）
-- 10、精简开机自启动服务
-- 11、调整系统文件描述符大小
-- 12、设置系统字符集
-- 13、清理登陆的时候显示的系统及内核版本
-- 14、内核参数优化
-- 15、定时清理/var/spool/clientmqueue
-- 16、删除不必要的系统用户和群组
-- 17、关闭重启ctl-alt-delete组合键
-- 18、设置一些全局变量
- 
-## 优化内核:
-```
-\cp /etc/sysctl.conf /etc/sysctl.conf.$(date +%F)
-cat >>/etc/sysctl.conf<<EOF
-net.ipv4.tcp_fin_timeout = 2
-net.ipv4.tcp_tw_reuse = 1
-net.ipv4.tcp_tw_recycle = 1
-net.ipv4.tcp_syncookies = 1
-net.ipv4.tcp_keepalive_time = 600
-net.ipv4.ip_local_port_range = 4000 65000
-net.ipv4.tcp_max_syn_backlog = 16384
-net.ipv4.tcp_max_tw_buckets = 36000
-net.ipv4.route.gc_timeout = 100
-net.ipv4.tcp_syn_retries = 1
-net.ipv4.tcp_synack_retries = 1
-net.core.somaxconn = 16384
-net.core.netdev_max_backlog = 16384
-net.ipv4.tcp_max_orphans = 16384
-net.netfilter.nf_conntrack_max = 25000000
-net.netfilter.nf_conntrack_tcp_timeout_established = 180
-net.netfilter.nf_conntrack_tcp_timeout_time_wait = 120
-net.netfilter.nf_conntrack_tcp_timeout_close_wait = 60
-net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 120
-EOF
-sysctl -p
-```
-注: 以下参数是对centos6.x的iptables防火墙的优化，防火墙不开会有提示，可以忽略不理。
-如果是centos5.X需要吧netfilter.nf_conntrack替换成ipv4.netfilter.ip
-centos5.X为net.ipv4.ip_conntrack_max = 25000000
 
-```
-net.nf_conntrack_max = 25000000
-net.netfilter.nf_conntrack_max = 25000000
-net.netfilter.nf_conntrack_tcp_timeout_established = 180
-net.netfilter.nf_conntrack_tcp_timeout_time_wait = 120
-net.netfilter.nf_conntrack_tcp_timeout_close_wait = 60
-net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 120
-```
- 
 ## 关闭bell:[需reboot]
 ```
 sed -i 's#^\#set bell-style none#set bell-style none#g' /etc/inputrc
@@ -840,3 +765,82 @@ length=${#array_name[*]}
 ```
 lengthn=${#array_name[n]}
 ```
+
+
+
+优化小结:
+一清： 定时清理日志/var/spool/clientsqueue
+一精： 精简开机启动服务
+一增： 增大文件描述符
+两优： linux内核参数的优化、yum源优化
+四设：设置系统的字符集、设置ssh登录限制、设置开机的提示信息与内核信息、设置block的大小
+七其他：文件系统优化、sync数据同步写入磁盘、不更新时间戳、锁定系统关键文件、时间同步、sudo集权管理、关闭防火墙和selinux
+ 
+ 
+centos一键优化脚本:
+- [细节:](http://oldboy.blog.51cto.com/2561410/1336488) 
+- [linux生产服务器有关网络状态的优化措施](http://oldboy.blog.51cto.com/2561410/1184228)
+- [linux定时任务Crond之定时任务优化系统案例15](http://oldboy.blog.51cto.com/2561410/1216730)
+- 一键脚本:
+  - [较简单: ](http://mofansheng.blog.51cto.com/8792265/1710247)
+  - [较健全:](http://chocolee.blog.51cto.com/8158455/1424587) 
+ 
+[本文 centos 6.5 优化 的项有18处:](http://www.lvtao.net/server/centos-server-setup.html)
+- 1、centos6.5最小化安装后启动网卡
+- 2、ifconfig查询IP进行SSH链接
+- 3、更新系统源并且升级系统
+- 4、系统时间更新和设定定时任
+- 5、修改ip地址、网关、主机名、DNS
+- 6、关闭selinux，清空iptables
+- 7、创建普通用户并进行sudo授权管理
+- 8、修改SSH端口号和屏蔽root账号远程登陆
+- 9、锁定关键文件系统（禁止非授权用户获得权限）
+- 10、精简开机自启动服务
+- 11、调整系统文件描述符大小
+- 12、设置系统字符集
+- 13、清理登陆的时候显示的系统及内核版本
+- 14、内核参数优化
+- 15、定时清理/var/spool/clientmqueue
+- 16、删除不必要的系统用户和群组
+- 17、关闭重启ctl-alt-delete组合键
+- 18、设置一些全局变量
+ 
+## 优化内核:
+```
+\cp /etc/sysctl.conf /etc/sysctl.conf.$(date +%F)
+cat >>/etc/sysctl.conf<<EOF
+net.ipv4.tcp_fin_timeout = 2
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_tw_recycle = 1
+net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_keepalive_time = 600
+net.ipv4.ip_local_port_range = 4000 65000
+net.ipv4.tcp_max_syn_backlog = 16384
+net.ipv4.tcp_max_tw_buckets = 36000
+net.ipv4.route.gc_timeout = 100
+net.ipv4.tcp_syn_retries = 1
+net.ipv4.tcp_synack_retries = 1
+net.core.somaxconn = 16384
+net.core.netdev_max_backlog = 16384
+net.ipv4.tcp_max_orphans = 16384
+net.netfilter.nf_conntrack_max = 25000000
+net.netfilter.nf_conntrack_tcp_timeout_established = 180
+net.netfilter.nf_conntrack_tcp_timeout_time_wait = 120
+net.netfilter.nf_conntrack_tcp_timeout_close_wait = 60
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 120
+EOF
+sysctl -p
+```
+注: 以下参数是对centos6.x的iptables防火墙的优化，防火墙不开会有提示，可以忽略不理。
+如果是centos5.X需要吧netfilter.nf_conntrack替换成ipv4.netfilter.ip
+centos5.X为net.ipv4.ip_conntrack_max = 25000000
+
+```
+net.nf_conntrack_max = 25000000
+net.netfilter.nf_conntrack_max = 25000000
+net.netfilter.nf_conntrack_tcp_timeout_established = 180
+net.netfilter.nf_conntrack_tcp_timeout_time_wait = 120
+net.netfilter.nf_conntrack_tcp_timeout_close_wait = 60
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 120
+```
+ 
