@@ -1,5 +1,5 @@
 
-
+[相关代码](https://github.com/lannyMa/scripts)
 
 ## env配置文件
 ```
@@ -436,14 +436,14 @@ http://www.361way.com/sed-process-lines/2263.html
  
  
 centos一键优化脚本:
-- 细节: http://oldboy.blog.51cto.com/2561410/1336488
-- 网络状态优化:http://oldboy.blog.51cto.com/2561410/1184228
-- 定时任务优化:http://oldboy.blog.51cto.com/2561410/1216730
+- [细节:](http://oldboy.blog.51cto.com/2561410/1336488) 
+- ![](http://oldboy.blog.51cto.com/2561410/1184228)
+- ![](http://oldboy.blog.51cto.com/2561410/1216730)
 - 一键脚本:
-  - 较简单: http://mofansheng.blog.51cto.com/8792265/1710247
-  - 较健全: http://chocolee.blog.51cto.com/8158455/1424587
+  - [较简单: ](http://mofansheng.blog.51cto.com/8792265/1710247)
+  - [较健全:](http://chocolee.blog.51cto.com/8158455/1424587) 
  
-本文 centos 6.5 优化 的项有18处:http://www.lvtao.net/server/centos-server-setup.html
+[本文 centos 6.5 优化 的项有18处:](http://www.lvtao.net/server/centos-server-setup.html)
 - 1、centos6.5最小化安装后启动网卡
 - 2、ifconfig查询IP进行SSH链接
 - 3、更新系统源并且升级系统
