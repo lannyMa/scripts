@@ -1,4 +1,19 @@
 
+
+## gitbash设置
+- 最终效果
+![](http://ww1.sinaimg.cn/large/9e792b8fgy1fj7x2v8smcj20w90hzjtj)
+
+- 背景色前景色设置
+![](http://ww1.sinaimg.cn/large/9e792b8fgy1fj7x1c7d9aj20nl0g2goc)
+![](http://ww1.sinaimg.cn/large/9e792b8fgy1fj7x2hukvsj20ma0f4tbb)
+
+- 修改gitbash提示符
+```
+C:\Program Files\Git\etc\profile.d\git-prompt.sh
+C:\Program Files\Git\etc\vimrc
+```
+
 [相关代码](https://github.com/lannyMa/scripts)
 
 ## env配置文件
