@@ -1,3 +1,9 @@
+## github文件夹灰色
+[参考](http://blog.csdn.net/xiaozhuxmen/article/details/51536967)
+
+```
+git rm -r --cached
+```
 
 ## 存放一些经常遇到的脚本/工具优化配置/一些kownledge
 
