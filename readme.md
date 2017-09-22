@@ -1,3 +1,66 @@
+## ubuntu16阿里云源
+
+- 源优化
+```
+cp /etc/apt/sources.list /etc/apt/sources.list_backup
+ 
+cat >> /etc/apt/sources.list <<EOF
+deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse #Added by software-properties
+deb http://archive.canonical.com/ubuntu xenial partner
+deb-src http://archive.canonical.com/ubuntu xenial partner
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
+EOF
+
+apt-get update
+
+```
+
+- pip优化
+```
+apt-get install python-pip -y
+cd
+mkdir ~/.pip
+cat >> .pip/pip.conf <<EOF
+[global]
+index-url = http://mirrors.aliyun.com/pypi/simple/
+ 
+[install]
+trusted-host=mirrors.aliyun.com
+EOF
+```
+
+- 时间优化
+```
+rm -rf /etc/localtime && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && ntpdate time-nw.nist.gov
+
+```
+
+- vim优化
+```
+git clone https://github.com/chxuan/vimplus.git
+cd ./vimplus
+sudo ./install.sh
+```
+
+
+# 黄色不伤害眼睛的rgb
+- 255 251 232
+- FFFBE8
+
+
 ## github文件夹灰色
 [参考](http://blog.csdn.net/xiaozhuxmen/article/details/51536967)
 
