@@ -1,3 +1,64 @@
+
+
+
+# mysql for win
+
+- 下载安装
+MySQL Community Server 5.7.16 
+http://dev.mysql.com/downloads/mysql/
+```
+cd D:\Program Files\mysql-5.7.19-winx64\bin
+mysqld --initialize-insecure
+```
+- 添加path
+```
+D:\Program Files\mysql-5.7.19-winx64\bin
+```
+ 
+# 启动MySQL服务
+
+```
+"D:\Program Files\mysql-5.7.19-winx64\bin\mysqld" --install
+
+net start mysql
+
+mysql -u root -p
+
+
+"D:\Program Files\mysql-5.7.19-winx64\bin\mysqld" --remove
+net stop mysql
+```
+
+- 字符集
+```
+show VARIABLES like '%max_allowed_packet%';
+
+show variables like '%storage_engine%';
+show variables like 'collation_%';
+show variables like 'character_set_%';
+
+```
+
+- 配置文件查找先后顺序
+```
+C:\ProgramData\MySQL\MySQL Server 5.7\my.ini
+C:\windows\my.ini
+C:\my.ini
+E:\dev\mysql57\my.ini
+
+default-storage-engine = innodb
+innodb_file_per_table = 1
+character-set-server = utf8
+collation-server = utf8_general_ci
+init-connect = 'SET NAMES utf8'
+
+
+basedir = E:\dev\mysql57
+datadir = E:\dev\mysql57\data
+```
+
+
+
 ## ubuntu16阿里云源
 
 - 源优化
