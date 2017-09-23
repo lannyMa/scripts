@@ -15,7 +15,7 @@ mysqld --initialize-insecure
 D:\Program Files\mysql-5.7.19-winx64\bin
 ```
  
-# 启动MySQL服务
+- 启动MySQL服务
 
 ```
 "D:\Program Files\mysql-5.7.19-winx64\bin\mysqld" --install
@@ -31,8 +31,21 @@ net stop mysql
 
 - 字符集
 ```
-show VARIABLES like '%max_allowed_packet%';
+SET NAMES 'utf8'; 
+SET character_set_client = utf8;
+SET character_set_connection = utf8;
+SET character_set_database = utf8;
+SET character_set_results = utf8;
+SET character_set_server = utf8;
 
+SET collation_connection = utf8_general_ci;
+SET collation_database = utf8_general_ci;
+SET collation_server = utf8_general_ci;
+
+
+show variables like '%storage_engine%';
+
+show VARIABLES like '%max_allowed_packet%';
 show variables like '%storage_engine%';
 show variables like 'collation_%';
 show variables like 'character_set_%';
@@ -46,6 +59,8 @@ C:\windows\my.ini
 C:\my.ini
 E:\dev\mysql57\my.ini
 
+通过配置文件设置字符集
+
 default-storage-engine = innodb
 innodb_file_per_table = 1
 character-set-server = utf8
@@ -57,6 +72,15 @@ basedir = E:\dev\mysql57
 datadir = E:\dev\mysql57\data
 ```
 
+- 查看建表语句
+```
+show create database test;
+```
+
+- 查看权限
+```
+show grants
+```
 
 
 ## ubuntu16阿里云源
