@@ -42,6 +42,32 @@ SET collation_connection = utf8_general_ci;
 SET collation_database = utf8_general_ci;
 SET collation_server = utf8_general_ci;
 
+缺陷是: 登出后设置的就失效了.
+```
+
+
+- 另一种配置文件持久化:
+```
+D:\Program Files\mysql-5.7.19-winx64\my.ini
+[mysqld]
+character-set-server=utf8 
+collation-server=utf8_general_ci 
+
+[mysql]
+default-character-set = utf8
+
+[mysql.server]
+default-character-set = utf8
+
+
+[mysqld_safe]
+default-character-set = utf8
+
+
+[client]
+default-character-set = utf8
+
+参考: http://blog.csdn.net/u013474104/article/details/52486880
 
 show variables like '%storage_engine%';
 
@@ -49,8 +75,11 @@ show VARIABLES like '%max_allowed_packet%';
 show variables like '%storage_engine%';
 show variables like 'collation_%';
 show variables like 'character_set_%';
-
 ```
+- mysql生产配置参考
+https://www.teakki.com/p/57e227aea16367940da625f8
+
+
 
 - 配置文件查找先后顺序
 ```
@@ -66,10 +95,6 @@ innodb_file_per_table = 1
 character-set-server = utf8
 collation-server = utf8_general_ci
 init-connect = 'SET NAMES utf8'
-
-
-basedir = E:\dev\mysql57
-datadir = E:\dev\mysql57\data
 ```
 
 - 查看建表语句
