@@ -3,6 +3,26 @@
 
 # mysql for win
 
+## 示例sql语句
+```
+create databse bbs;
+
+create table users( user  varchar(50),pwd varchar(50));
+
+desc users;
+
+select * from users;
+
+insert into users values("maotai",'123456');
+
+delete from users where user='maotai';
+
+update users set pwd='123' where user="maotai";
+
+```
+
+
+
 - 下载安装
 MySQL Community Server 5.7.16 
 http://dev.mysql.com/downloads/mysql/
