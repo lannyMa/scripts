@@ -139,8 +139,11 @@ SET collation_server = utf8_general_ci;
 ```
 D:\Program Files\mysql-5.7.19-winx64\my.ini
 [mysqld]
-character-set-server=utf8 
-collation-server=utf8_general_ci 
+default-storage-engine = innodb
+innodb_file_per_table = 1
+character-set-server = utf8
+collation-server = utf8_general_ci
+init-connect = 'SET NAMES utf8'
 
 [mysql]
 default-character-set = utf8
@@ -247,7 +250,9 @@ rm -rf /etc/localtime && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && 
 
 ```
 
-- vim优化
+- 
+- 
+- 优化
 ```
 git clone https://github.com/chxuan/vimplus.git
 cd ./vimplus
@@ -581,6 +586,10 @@ set autoindent
 set vb t_vb=
 set ts=4
 set expandtab
+set paste
+set fileencodings=utf-8,ucs-bom,cp936
+syntax on
+set hls
 a
 . /etc/vimrc
 ``` 
