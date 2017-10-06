@@ -71,7 +71,7 @@
 ----------
 
 
-## 文件权限-面试
+## umask 045 -> 046: 文件权限-面试
 ```
 umask: 022   (666-022)644
              (777-022)755
@@ -81,7 +81,7 @@ umask  045(所有奇数位都要+1)-->046
                              666 - 046 = 620
 ```
 
-## 给某flie.txt所有用户+x
+## chmod a+x: 给某flie.txt所有用户+x
 ```
 chmod a+x file.txt  #而不是chmod o+x file.txt
 ```
@@ -91,26 +91,6 @@ chmod a+x file.txt  #而不是chmod o+x file.txt
 
 
 # mysql for win
-
-## 示例sql语句
-```
-create databse bbs;
-
-create table users( user  varchar(50),pwd varchar(50));
-
-desc users;
-
-select * from users;
-
-insert into users values("maotai",'123456');
-
-delete from users where user='maotai';
-
-update users set pwd='123' where user="maotai";
-
-```
-
-
 
 - 下载安装
 MySQL Community Server 5.7.16 
