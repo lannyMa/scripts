@@ -1,6 +1,6 @@
 
 
-# ygamil发邮件
+# yagmail发html邮件
 ```
 import yagmail
 yag = yagmail.SMTP(user='lannymxl@sina.com', password='ccc', host='smtp.sina.com', port='25',smtp_ssl=False)
