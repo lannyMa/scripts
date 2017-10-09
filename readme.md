@@ -1,5 +1,18 @@
 
 
+# ygamil发邮件
+```
+import yagmail
+yag = yagmail.SMTP(user='lannymxl@sina.com', password='ccc', host='smtp.sina.com', port='25',smtp_ssl=False)
+yag.send('iher@163.com', subject="I now can send an attachment", contents='<h1 style="color:red">hello world</h1>')
+```
+- 样式
+```
+<h1>hello world</h1>                    这样写邮件可以显显示格式
+<h1 style="color:red">hello world</h1>  这样可以加载css. 但是如果以头文件引用css文件,或者style标签,邮件乱码
+附件有监控个一个例子
+```
+
 # linux复习整体思路
 
 ----------
