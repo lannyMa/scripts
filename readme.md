@@ -1,3 +1,24 @@
+## 监控流量
+```
+nload   总流量
+nethogs 针对程序
+iptraf  针对ip
+
+yum install nload iptraf nethogs -y
+```
+
+## 优化ls
+```
+cat >> /etc/bashrc<<EOF
+alias ll='ls -hltrAF --time-style=full-iso'
+alias lu='ls -AF| xargs du -sh|sort -rn'
+EOF
+source /etc/bashrc
+
+大于30天没访问,且大小超过100M的
+find /tmp -atime +30 -a –size +100M -exec 'rm -rf *' \;
+```
+
 
 ## 正确姿势安装py3
 - 选择64bit的python3
