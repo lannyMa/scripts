@@ -55,6 +55,7 @@ http://nolinux.blog.51cto.com/4824967/1594029
 
 
 ## nginx-module-vts
+![](http://ww1.sinaimg.cn/large/9e792b8fgy1fkdf4579ntj20rs0q0juy)
 参考: 
 https://github.com/vozlt/nginx-module-vts#installation
 
