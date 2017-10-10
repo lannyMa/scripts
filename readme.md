@@ -1,4 +1,12 @@
 
+## 正确姿势安装py3
+- 选择64bit的python3
+- 选择自定义安装
+![](http://ww1.sinaimg.cn/large/9e792b8fgy1fkcvg7j34rj20im0bg77c)
+
+- 选择安装位置
+![](http://ww1.sinaimg.cn/large/9e792b8fgy1fkcvhq6rvrj20im0bgwhk)
+
 
 # yagmail发html邮件
 ```
