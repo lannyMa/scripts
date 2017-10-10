@@ -5,6 +5,14 @@ nethogs 针对程序
 iptraf  针对ip
 
 yum install nload iptraf nethogs -y
+
+for win:
+## 查连接
+netstat -ano | find "ESTABLISHED"
+## 通过端口查进程
+tasklist | find "2968"
+
+## wireshark抓包过滤
 ```
 
 ## 优化ls
