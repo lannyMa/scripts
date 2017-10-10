@@ -6,6 +6,8 @@ iptraf  针对ip
 
 yum install nload iptraf nethogs -y
 
+cpu/内存/磁盘: htop/iotop搞定
+
 for win:
 ## 查连接
 netstat -ano | find "ESTABLISHED"
@@ -18,11 +20,13 @@ tasklist | find "2968"
 ## 优化ls
 ```
 cat >> /etc/bashrc<<EOF
+unalias ll
+unalias l.
 alias ll='ls -hltrAF --time-style=full-iso'
 alias lu='ls -AF| xargs du -sh|sort -rn'
 EOF
 source /etc/bashrc
-
+tail -n 4 /etc/bashrc
 大于30天没访问,且大小超过100M的
 find /tmp -atime +30 -a –size +100M -exec 'rm -rf *' \;
 ```
