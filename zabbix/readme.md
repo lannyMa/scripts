@@ -16,6 +16,10 @@ agent采集-->zabbixserver接锅-->db-->webui展示
   - 触发器
   - 模板
 
+添加主机-->应用template(收集到数据)-->触发器-->动作关联触发器-->实现报警
+参考:http://xiao987334176.blog.51cto.com/2202382/1768339
+
+
 
 ## 添加一个主机
 pass
@@ -59,7 +63,7 @@ UserParameter=linux_status[*],/etc/zabbix/shells/zabbix_linux_plugin.sh "$1" "$2
 
 - 4.在zabbixserver上确保agent上自定义的key有效
 ```
-[root@zabbix-test120 ~]# zabbix_get -s 192.168.6.11 -k linux_status[tcp_status,ESTAB]
+[root@zabbix-test120 ~]# zabbix_get -s 192.168.11.11 -k linux_status[tcp_status,ESTAB]
 4
 ```
 
