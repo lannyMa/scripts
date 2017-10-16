@@ -1,3 +1,40 @@
+
+## nginx列出目录&nginx认证
+```
+# error_log /usr/local/nginx/logs/error.log;
+
+    server {
+        listen 80;
+        server_name 192.168.60.123;
+
+        location / {
+            root /server/soft_pkgs;
+            autoindex on;
+            autoindex_localtime on; #之类的参数写这里
+            autoindex_exact_size off;
+        }
+        location /ngx_status {
+            auth_basic "secret";
+            auth_basic_user_file /usr/local/nginx/conf/.pass;
+            stub_status on;
+            # access_log  off;
+            allow 127.0.0.1;
+            allow 192.168.10.0/24;
+            allow 192.168.60.0/24;
+            deny all;
+        }
+        location /ngx_statuss {
+            auth_basic "secret";
+            auth_basic_user_file /usr/local/nginx/conf/.pass;
+            check_status;
+            # access_log off;
+            #allow IP;
+            #deny all;
+        }
+    }
+```
+
+
 ## 监控流量
 ```
 nload   总流量
