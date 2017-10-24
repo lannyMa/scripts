@@ -1,0 +1,5 @@
+{
+    "cmd": ["C:\\Users\\Administrator\\Envs\\py36env\\Scripts\\python.exe", "-u", "$file"],
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "quiet": true
+}
