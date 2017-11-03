@@ -207,6 +207,11 @@ mysql -u root -p
 
 "D:\Program Files\mysql-5.7.19-winx64\bin\mysqld" --remove
 net stop mysql
+
+
+create database bbs;
+grant all on bbs.* to dev@localhost identified by '123456';
+grant all on bbs.* to dev@'%' identified by '123456';
 ```
 
 - 字符集
