@@ -160,6 +160,26 @@ yag.send('iher@163.com', subject="I now can send an attachment", contents='<h1 s
   - sudo
 
 ----------
+# docker学习思路
+三部曲: 
+- 1,vm会搭建服务
+- 2,docker会跑服务
+- 3,k8s集群会调度该服务
+
+存储
+- vm1 vm2 共享存储,vm1的容器挂了直接调度到vm2(docker存储驱动实现)
+
+网络
+- 物理机安装flannel,使两台docker上容器能通(物理机/容器搭建etcd集群)
+- 物理机搭建openvswitch,实现两台docker
+
+监控
+- cadvisor会跑
+- 物理机安装grafana,物理机安装promethus(实现nodeexplore和mysqlexplore)
+- 容器跑promethus +cadvisor+grafana
+- 容器跑cadvisor+influendb+grafana
+- 容器跑elk,物理机跑filebeat搜集容器日志
+
 
 
 ## umask 045 -> 046: 文件权限-面试
