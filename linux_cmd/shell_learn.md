@@ -7,7 +7,7 @@
 
 
 ## 参数
-```
+```shell
 $1 $2
 $# 总个数
 $? 执行结果(函数return获取)
@@ -45,7 +45,7 @@ done
   -d -f
 
 - 序列
-```
+```shell
   {1..10}
   seq 10
 
@@ -57,7 +57,7 @@ seq -s " " 15|sed 's# # $#g'
 
 
 ## 数据类型
-```
+```shell
 数值
   比较 ((10<20))
   相加 
@@ -73,7 +73,7 @@ fi
 ```
 
 ## 条件
-```
+```shell
 if then fi
     if
     if else
@@ -81,8 +81,7 @@ if then fi
 ```
 
 ## case
-
-```    
+```    shell
 case
   case $ans in
   'ok' | 'yes')
@@ -94,9 +93,9 @@ case
     echo no
     ;;
 ```
+
 ## for循环
-
-
+```shell
 for do doen
     for i in 列表;do{}done
     for((i=0;i<10;i++))
@@ -104,16 +103,19 @@ for do doen
 ```
 
 - 写法: 举个例子
-```
+```shell
 clear
 
 - 第一种
+
   for i in $(seq 10);do
     echo $i
     sleep 1
   done
 
+
 - 第二种
+
   for((i=1;i<=10;i++));do
     echo $i
   done
@@ -123,7 +125,7 @@ clear
 ```
 while :;do
 done
-``` 
+```
 
 ## 函数
 ```
@@ -146,7 +148,7 @@ function
 ```
 
 - 3、echo打印颜色字
-```
+```shell
 echo -e "\033[31malong\033[0m" 显示红色along
 
 echo -e "\033[1;31malong\033[0m" 高亮显示红色along
