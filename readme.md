@@ -1,4 +1,8 @@
 
+## [linux命令](linux_cmd/readme.md)
+- grep
+- curl
+
 ## nginx列出目录&nginx认证
 ```
 # error_log /usr/local/nginx/logs/error.log;
