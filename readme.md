@@ -3,6 +3,9 @@
 - grep
 - curl
 
+## [shell语法小结](linux_cmd/shell_learn.md)
+
+
 ## nginx列出目录&nginx认证
 ```
 # error_log /usr/local/nginx/logs/error.log;
