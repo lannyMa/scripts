@@ -42,7 +42,7 @@ done
 
 
 - 判断文件,目录
--d -f
+  -d -f
 
 - 序列
 ```
@@ -93,9 +93,9 @@ case
   [nN][oO][nN])
     echo no
     ;;
-
-## for循环
 ```
+## for循环
+
 
 for do doen
     for i in 列表;do{}done
@@ -108,15 +108,15 @@ for do doen
 clear
 
 - 第一种
-for i in $(seq 10);do
+  for i in $(seq 10);do
     echo $i
     sleep 1
-done
+  done
 
 - 第二种
-for((i=1;i<=10;i++));do
+  for((i=1;i<=10;i++));do
     echo $i
-done
+  done
 ```
 
 ## while循环
@@ -126,7 +126,7 @@ done
 ``` 
 
 ## 函数
-``` 
+```
 function
     local
 ```
