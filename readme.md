@@ -116,8 +116,10 @@ yag.send('iher@163.com', subject="I now can send an attachment", contents='<h1 s
 - 条件判断 if,case,for,while
 
 # 从磁盘到操作系统
-- 磁盘结构(raid)
-- MBR分区
+- 磁盘结构(raid)[磁盘物理结构及大小计算]
+- MBR分区- fdisk分区 挂载 自动挂载 -> inode block -> 软硬链接
+
+
 - 格式化(文件系统)(inode/block)
 - 安装os
 - 优化os
