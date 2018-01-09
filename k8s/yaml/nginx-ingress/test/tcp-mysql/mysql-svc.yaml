@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app-name: mysql
+  name: mysql
+  namespace: kube-public
+spec:
+  type: NodePort
+  ports:
+  - port: 3306
+    targetPort: 3306
+    nodePort: 30001
+  selector:
+    app-name: mysql-develop

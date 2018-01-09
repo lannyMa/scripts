@@ -1,0 +1,59 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mysql-develop
+  namespace: kube-public
+  labels:
+    app-name: mysql-develop
+spec:
+  template:
+    metadata:
+      labels:
+        app-name: mysql-develop
+    spec:
+      containers:
+      - image: mysql:5.6.23
+        name: mysql
+        imagePullPolicy: IfNotPresent
+        args:
+        - --character-set-server=utf8
+        - --collation-server=utf8_general_ci
+        resources:
+          limits:
+            cpu: 1
+            memory: 1Gi
+          requests:
+            cpu: 1
+            memory: 1Gi
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "123456"
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-data-folder
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-data-folder
+        persistentVolumeClaim:
+          claimName: mysql-develop-pvc
+
+
+
+
+# docker run  \
+#   -p 3306:3306 \
+#   -v /data/mysql:/var/lib/mysql \
+#   -v /etc/localtime:/etc/localtime \
+#   --name mysql5 \
+#   --restart=always \
+#   -e MYSQL_ROOT_PASSWORD=123456 \
+#   -d mysql:5.6.23 --character-set-server=utf8 --collation-server=utf8_general_ci
+
+
+# show VARIABLES like '%max_allowed_packet%';
+
+# show variables like '%storage_engine%';
+# show variables like 'collation_%';
+# show variables like 'character_set_%';
