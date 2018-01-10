@@ -1,6 +1,5 @@
 # http://192.168.x.x:18080/nginx_status
 apiVersion: extensions/v1beta1
-
 kind: Deployment
 metadata:
   name: nginx-ingress-controller
